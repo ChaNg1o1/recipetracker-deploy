@@ -19,9 +19,9 @@ jobs:
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
-      issues: write
+      contents: read
+      pull-requests: read
+      issues: read
       id-token: write
       actions: read # Required for Claude to read CI results on PRs
     steps:
@@ -33,13 +33,6 @@ jobs:
       - name: Run Claude Code
         id: claude
         uses: anthropics/claude-code-action@v1
-<<<<<<< HEAD
-        env:
-          ANTHROPIC_BASE_URL: https://api.moonshot.cn/anthropic
-          ANTHROPIC_MODEL: "kimi-k2-turbo-preview"
-          # ANTHROPIC_BASE_URL: https://open.bigmodel.cn/api/anthropic
-=======
->>>>>>> 9307dd89bf1beba4fc506bb72d5e17f09bc17bb7
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
 
