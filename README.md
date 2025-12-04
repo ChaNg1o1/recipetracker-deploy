@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="../assets/screenshots/logo_transparent.png" alt="RecipeTracker Logo" width="300">
+<img src="logo_transparent.png" alt="RecipeTracker Logo" width="300">
 
 [![Java](https://img.shields.io/badge/Java-17+-orange?style=flat-square&logo=openjdk)](https://www.java.com/)
 [![Maven](https://img.shields.io/badge/Maven-3.6+-blue?style=flat-square&logo=apachemaven)](https://maven.apache.org/)
