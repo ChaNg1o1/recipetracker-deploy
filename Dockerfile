@@ -23,4 +23,4 @@ RUN echo '#!/bin/sh' > /app/start.sh && \
     echo 'done' >> /app/start.sh && \
     chmod +x /app/start.sh
 
-CMD ["sh", "-c", "ttyd -p 8000 -W -m 50 -t fontSize=14 /app/start.sh"]
+CMD ["sh", "-c", "ttyd -p 8000 -W -m 200 -t fontSize=14 /app/start.sh"]
