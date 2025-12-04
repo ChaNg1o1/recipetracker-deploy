@@ -37,7 +37,8 @@ RUN echo '#!/bin/sh' > /app/start.sh && \
 # 使用 ttyd 启动 Java 应用
 # -p 8000: 监听端口
 # -W: 允许写入（用户可以输入）
-# -c: 基本认证
 # -m 5: 允许最多5个客户端同时连接
 # -t: 终端选项
-CMD ["sh", "-c", "ttyd -p 8000 -W -m 5 -c ${TTYD_USER}:${TTYD_PASS} -t fontSize=14 /app/start.sh"]
+# 注意：移除了 -c 认证参数以兼容 Safari
+# 如需认证，可使用 Koyeb 的私有应用功能或 Cloudflare Access
+CMD ["sh", "-c", "ttyd -p 8000 -W -m 5 -t fontSize=14 /app/start.sh"]
