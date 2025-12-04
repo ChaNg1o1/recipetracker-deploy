@@ -8,6 +8,9 @@
 [![License](https://img.shields.io/badge/License-WTFPL-green?style=flat-square)](LICENSE)
 ---
 ### 这是 RecipeTracker 对应的Web部署仓库，使用 ttyd 将控制台程序转换为由 xterm.js 支持的 Web 终端程序
+<div align="center">
+  <img src="../assets/screenshots/workflow.png" alt="云端部署流程" width="100%">
+</div>
 
 <img src="./metrics.png" alt="Metrics" style="max-width: 100%;">
 
