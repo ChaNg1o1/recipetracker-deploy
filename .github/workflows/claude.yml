@@ -1,6 +1,5 @@
-
 name: Claude Code
- 
+
 on:
   issue_comment:
     types: [created]
@@ -10,7 +9,7 @@ on:
     types: [opened, assigned]
   pull_request_review:
     types: [submitted]
- 
+
 jobs:
   claude:
     if: |
@@ -20,25 +19,39 @@ jobs:
       (github.event_name == 'issues' && (contains(github.event.issue.body, '@claude') || contains(github.event.issue.title, '@claude')))
     runs-on: ubuntu-latest
     permissions:
-      contents: write
-      pull-requests: write
-      issues: write
+      contents: read
+      pull-requests: read
+      issues: read
       id-token: write
-      actions: write
+      actions: read # Required for Claude to read CI results on PRs
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
- 
+
       - name: Run Claude Code
         id: claude
         uses: anthropics/claude-code-action@v1
+<<<<<<< HEAD
         env:
           ANTHROPIC_BASE_URL: https://api.moonshot.cn/anthropic
           ANTHROPIC_MODEL: "kimi-k2-turbo-preview"
           # ANTHROPIC_BASE_URL: https://open.bigmodel.cn/api/anthropic
+=======
+>>>>>>> 9307dd89bf1beba4fc506bb72d5e17f09bc17bb7
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
-          claude_args: |
-            --allowedTools "mcp__github_inline_comment__create_inline_comment,Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh issue:*),Bash(gh search:*),Bash(gh label:*)"
+
+          # This is an optional setting that allows Claude to read CI results on PRs
+          additional_permissions: |
+            actions: read
+
+          # Optional: Give a custom prompt to Claude. If this is not specified, Claude will perform the instructions specified in the comment that tagged it.
+          # prompt: 'Update the pull request description to include a summary of changes.'
+
+          # Optional: Add claude_args to customize behavior and configuration
+          # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
+          # or https://code.claude.com/docs/en/cli-reference for available options
+          # claude_args: '--allowed-tools Bash(gh pr:*)'
+
