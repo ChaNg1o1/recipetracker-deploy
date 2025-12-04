@@ -14,11 +14,11 @@ ENV LC_ALL=C.UTF-8
 
 RUN echo '#!/bin/sh' > /app/start.sh && \
     echo 'while true; do' >> /app/start.sh && \
-    echo '  echo "RecipeTracker 启动中" ' >> /app/start.sh && \
+    echo '  echo "PaaS端消息:RecipeTracker 启动中" ' >> /app/start.sh && \
     echo '  java -Djline.terminal=dumb -jar /app/app.jar 2>&1' >> /app/start.sh && \
     echo '  EXIT_CODE=$?' >> /app/start.sh && \
     echo '  echo ""' >> /app/start.sh && \
-    echo '  echo "程序退出 (代码: $EXIT_CODE) 3秒后重启..."' >> /app/start.sh && \
+    echo '  echo "PaaS端消息:程序退出 (代码: $EXIT_CODE) 3秒后重启..."' >> /app/start.sh && \
     echo '  sleep 3' >> /app/start.sh && \
     echo 'done' >> /app/start.sh && \
     chmod +x /app/start.sh
