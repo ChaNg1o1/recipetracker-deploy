@@ -1,5 +1,8 @@
 name: Claude Code Review
 
+env:
+  ANTHROPIC_BASE_URL: ${{secrets.ANTHROPIC_BASE_URL}}
+
 on:
   pull_request:
     types: [opened, synchronize]
@@ -39,6 +42,7 @@ jobs:
           
         with:
           anthropic_api_key: ${{ secrets.ANTHROPIC_API_KEY }}
+          show_full_output: true
           prompt: |
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ github.event.pull_request.number }}
