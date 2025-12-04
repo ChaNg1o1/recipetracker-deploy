@@ -21,14 +21,23 @@ ENV LC_ALL=C.UTF-8
 ENV TTYD_USER=admin
 ENV TTYD_PASS=1024
 
-# 创建启动脚本
+# 创建启动脚本（带自动重启）
 RUN echo '#!/bin/sh' > /app/start.sh && \
-    echo 'exec java -Djline.terminal=dumb -jar /app/app.jar' >> /app/start.sh && \
+    echo 'stty -echo 2>/dev/null || true' >> /app/start.sh && \
+    echo 'while true; do' >> /app/start.sh && \
+    echo '  echo "=== RecipeTracker 启动中 ===" ' >> /app/start.sh && \
+    echo '  java -Djline.terminal=dumb -jar /app/app.jar 2>&1' >> /app/start.sh && \
+    echo '  EXIT_CODE=$?' >> /app/start.sh && \
+    echo '  echo ""' >> /app/start.sh && \
+    echo '  echo "程序退出 (代码: $EXIT_CODE)，3秒后重启..."' >> /app/start.sh && \
+    echo '  sleep 3' >> /app/start.sh && \
+    echo 'done' >> /app/start.sh && \
     chmod +x /app/start.sh
 
 # 使用 ttyd 启动 Java 应用
 # -p 8000: 监听端口
 # -W: 允许写入（用户可以输入）
-# -c: 基本认证 用户名:密码
-# -t: 添加终端选项
-CMD ["sh", "-c", "ttyd -p 8000 -W -c ${TTYD_USER}:${TTYD_PASS} -t fontSize=14 -t fontFamily='Consolas,Monaco,monospace' /app/start.sh"]
+# -c: 基本认证
+# -m 5: 允许最多5个客户端同时连接
+# -t: 终端选项
+CMD ["sh", "-c", "ttyd -p 8000 -W -m 5 -c ${TTYD_USER}:${TTYD_PASS} -t fontSize=14 /app/start.sh"]
