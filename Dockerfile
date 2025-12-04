@@ -13,7 +13,6 @@ ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 
 RUN echo '#!/bin/sh' > /app/start.sh && \
-    echo 'stty -echo 2>/dev/null || true' >> /app/start.sh && \
     echo 'while true; do' >> /app/start.sh && \
     echo '  echo "RecipeTracker 启动中" ' >> /app/start.sh && \
     echo '  java -Djline.terminal=dumb -jar /app/app.jar 2>&1' >> /app/start.sh && \
