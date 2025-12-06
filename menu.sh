@@ -7,6 +7,7 @@ while true; do
     echo ""
     echo "RecipeTracker 演示环境"
     echo "等待5秒自动进入演示模式"
+    echo ""
     echo "1.  观看演示"
     echo "2.  快速体验"
     echo "3.  退出"
@@ -23,7 +24,6 @@ while true; do
     case $choice in
         1)
             clear
-            echo "正在播放演示..."
             echo ""
             sleep 1
             asciinema play /app/demo.cast
@@ -33,7 +33,7 @@ while true; do
             ;;
         2)
             clear
-            echo "启动 RecipeTracker 应用..."
+            echo "启动 RecipeTracker..."
             echo ""
             java -Djline.terminal=dumb -jar /app/app.jar
             echo ""
