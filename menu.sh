@@ -28,12 +28,13 @@ while true; do
             sleep 1
             asciinema play /app/demo.cast
             echo ""
+            echo ""
             echo "按回车键返回菜单..."
             read _
             ;;
         2)
             clear
-            echo "启动 RecipeTracker..."
+            echo "启动 RecipeTracker 请稍后..."
             echo ""
             java -Djline.terminal=dumb -jar /app/app.jar
             echo ""
