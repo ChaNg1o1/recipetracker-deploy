@@ -6,18 +6,24 @@ while true; do
     clear
     echo ""
     echo "RecipeTracker 演示环境"
+    echo "等待5秒自动进入演示模式"
     echo "1.  观看演示"
-    echo "2.  快速体验 (运行应用)"
+    echo "2.  快速体验"
     echo "3.  退出"
     echo ""
     printf "请选择 [1-3]: "
-    read choice
+    if read -t 5 choice; then
+        :
+    else
+        echo ""
+        choice=1
+        sleep 1
+    fi
     
     case $choice in
         1)
             clear
             echo "正在播放演示..."
-            echo "提示: 按 q 可随时退出播放"
             echo ""
             sleep 1
             asciinema play /app/demo.cast
