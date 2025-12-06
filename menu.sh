@@ -5,8 +5,8 @@
 while true; do
     clear
     echo ""
-    echo "RecipeTracker 演示环境"
-    echo "等待5秒自动进入演示模式"
+    echo "欢迎进入 RecipeTracker 演示环境"
+    echo "默认等待5秒自动进入演示模式，你可以随时Ctrl + C打断"
     echo ""
     echo "1.  观看演示"
     echo "2.  快速体验"
